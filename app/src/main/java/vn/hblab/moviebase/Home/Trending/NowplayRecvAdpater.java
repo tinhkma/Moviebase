@@ -1,17 +1,18 @@
 package vn.hblab.moviebase.Home.Trending;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,9 +25,11 @@ import static vn.hblab.moviebase.Network.AppConfig.IMAGE_URL;
 public class NowplayRecvAdpater extends RecyclerView.Adapter<NowplayRecvAdpater.RecyclerViewHolder> {
 
     private List<NowPlaying.Results> data;
+    Activity activity;
 
-    public NowplayRecvAdpater(List<NowPlaying.Results> data) {
+    public NowplayRecvAdpater(Activity activity, List<NowPlaying.Results> data) {
         this.data = data;
+        this.activity = activity;
     }
 
     @NonNull
@@ -44,9 +47,12 @@ public class NowplayRecvAdpater extends RecyclerView.Adapter<NowplayRecvAdpater.
                 .resize(500, 750)
                 .into(holder.backdropPath);
 
-        holder.originalTitle.setText(data.get(position).getOriginalTitle());
+        holder.originalTitle.setText(data.get(position).getTitle());
 
         holder.voteAverage.setText(String.valueOf(data.get(position).getVoteAverage()));
+        holder.backdropPath.setOnClickListener(v->{
+            Toast.makeText(activity, data.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override

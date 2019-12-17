@@ -1,10 +1,12 @@
 package vn.hblab.moviebase.Home.Trending;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,9 +26,11 @@ import static vn.hblab.moviebase.Network.AppConfig.IMAGE_URL;
 public class TrendingTVRecvAdpater extends RecyclerView.Adapter<TrendingTVRecvAdpater.RecyclerViewHolder> {
 
     private List<TrendingTV.Results> data = new ArrayList<>();
+    Activity activity;
 
-    public TrendingTVRecvAdpater(List<TrendingTV.Results> data) {
+    public TrendingTVRecvAdpater(Activity activity, List<TrendingTV.Results> data) {
         this.data = data;
+        this.activity = activity;
     }
 
     @NonNull
@@ -46,6 +50,10 @@ public class TrendingTVRecvAdpater extends RecyclerView.Adapter<TrendingTVRecvAd
 
         holder.originalTitle.setText(data.get(position).getName());
         holder.voteAverage.setText(String.valueOf(data.get(position).getVote_average()));
+
+        holder.backdropPath.setOnClickListener(v-> {
+            Toast.makeText(activity, data.get(position).getName(), Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override

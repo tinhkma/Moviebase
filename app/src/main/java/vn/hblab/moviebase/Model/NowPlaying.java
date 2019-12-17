@@ -1,12 +1,12 @@
 package vn.hblab.moviebase.Model;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class NowPlaying {
+
     @SerializedName("results")
     @Expose
     private List<Results> results = null;
@@ -18,7 +18,7 @@ public class NowPlaying {
     private Integer totalResults;
     @SerializedName("dates")
     @Expose
-    private List<Dates> dates;
+    private Dates dates;
     @SerializedName("total_pages")
     @Expose
     private Integer totalPages;
@@ -27,23 +27,43 @@ public class NowPlaying {
         return results;
     }
 
+    public void setResults(List<Results> results) {
+        this.results = results;
+    }
+
     public Integer getPage() {
         return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
     public Integer getTotalResults() {
         return totalResults;
     }
 
-    public List<Dates> getDates() {
+    public void setTotalResults(Integer totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public Dates getDates() {
         return dates;
+    }
+
+    public void setDates(Dates dates) {
+        this.dates = dates;
     }
 
     public Integer getTotalPages() {
         return totalPages;
     }
 
-    public static class Results {
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public class Results {
 
         @SerializedName("popularity")
         @Expose
@@ -59,7 +79,7 @@ public class NowPlaying {
         private String posterPath;
         @SerializedName("id")
         @Expose
-        private Double id;
+        private Integer id;
         @SerializedName("adult")
         @Expose
         private Boolean adult;
@@ -74,7 +94,7 @@ public class NowPlaying {
         private String originalTitle;
         @SerializedName("genre_ids")
         @Expose
-        private List<Double> genreIds = null;
+        private List<Integer> genreIds = null;
         @SerializedName("title")
         @Expose
         private String title;
@@ -120,8 +140,12 @@ public class NowPlaying {
             this.posterPath = posterPath;
         }
 
-        public Double getId() {
+        public Integer getId() {
             return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
         }
 
         public Boolean getAdult() {
@@ -156,29 +180,50 @@ public class NowPlaying {
             this.originalTitle = originalTitle;
         }
 
-        public List<Double> getGenreIds() {
+        public List<Integer> getGenreIds() {
             return genreIds;
+        }
+
+        public void setGenreIds(List<Integer> genreIds) {
+            this.genreIds = genreIds;
         }
 
         public String getTitle() {
             return title;
         }
 
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
         public Double getVoteAverage() {
             return voteAverage;
+        }
+
+        public void setVoteAverage(Double voteAverage) {
+            this.voteAverage = voteAverage;
         }
 
         public String getOverview() {
             return overview;
         }
 
+        public void setOverview(String overview) {
+            this.overview = overview;
+        }
+
         public String getReleaseDate() {
             return releaseDate;
         }
 
+        public void setReleaseDate(String releaseDate) {
+            this.releaseDate = releaseDate;
+        }
+
+
     }
 
-    public static class Dates {
+    public class Dates {
 
         @SerializedName("maximum")
         @Expose
@@ -191,8 +236,20 @@ public class NowPlaying {
             return maximum;
         }
 
+        public void setMaximum(String maximum) {
+            this.maximum = maximum;
+        }
+
         public String getMinimum() {
             return minimum;
         }
+
+        public void setMinimum(String minimum) {
+            this.minimum = minimum;
+        }
+
     }
+
 }
+
+
